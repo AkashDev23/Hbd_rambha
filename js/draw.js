@@ -403,6 +403,7 @@
 
 
 
+const colorPicker = document.getElementById("color-picker");
 
 
 const canvas = document.getElementById("draw-canvas");
@@ -447,7 +448,7 @@ function draw(e) {
     y = e.clientY - canvas.getBoundingClientRect().top;
   }
 
-  ctx.lineWidth = 2;
+ctx.lineWidth = parseInt(brushSizeInput.value);
   ctx.lineCap = "round";
 
   if (eraserMode) {
@@ -455,7 +456,7 @@ function draw(e) {
   } else if (rainbowMode) {
     ctx.strokeStyle = `hsl(${hue++}, 100%, 50%)`;
   } else {
-    ctx.strokeStyle = "#b23a48";
+    ctx.strokeStyle = "black";
   }
 
   ctx.lineTo(x, y);
@@ -536,12 +537,18 @@ heartBtn.addEventListener("click", () => {
 
 eraserBtn.addEventListener("click", () => {
   eraserMode = !eraserMode;
+
+  // Turn off other modes
   rainbowMode = false;
   heartMode = false;
+
+  // Toggle active state visually
+  eraserBtn.textContent = eraserMode ? "Draw Mode" : "Eraser";
   eraserBtn.classList.toggle("active", eraserMode);
   rainbowBtn.classList.remove("active");
   heartBtn.classList.remove("active");
 });
+
 
 const brushSizeInput = document.getElementById("brush-size");
 ctx.lineWidth = parseInt(brushSizeInput.value);
