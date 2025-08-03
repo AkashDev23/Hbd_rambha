@@ -112,7 +112,7 @@ document.addEventListener("DOMContentLoaded", function () {
         span.innerHTML = display;
 
         charIndex++;
-        container.scrollIntoView({ behavior: "smooth", block: "end" });
+        // container.scrollIntoView({ behavior: "smooth", block: "end" });
 
         if (charIndex <= rawText.length) {
           setTimeout(typeChar, 60);
